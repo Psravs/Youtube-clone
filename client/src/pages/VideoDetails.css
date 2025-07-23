@@ -1,0 +1,317 @@
+
+/* video player page */
+.video-details-page {
+  display: flex;
+  padding: 24px;
+  gap: 24px;
+  background-color: white;
+  font-family: Arial, sans-serif;
+}
+
+.main-video-section {
+  flex: 2;
+}
+
+.main-video {
+  width: 100%;
+  max-height: 500px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+/* video title */
+.video-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: black;
+}
+
+.channel-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.video-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* channel icon */
+.channel-avatar-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffd6e6;
+  color: #b8005c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.channel-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* like and dislike buttons */
+.like-btn,
+.dislike-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #555;
+  transition: transform 0.2s ease;
+}
+
+/* like and dislike buttons hover effect*/
+
+.like-btn:hover,
+.dislike-btn:hover {
+  transform: scale(1.2);
+  color: #b8005c;
+}
+
+/* subscribe button */
+.subscribe-btn {
+  background-color: white;
+  color: #b8005c;
+  border: 1px solid #b8005c;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+/* subscribe button hover effect*/
+
+.subscribe-btn:hover {
+  background-color: #b8005c;
+  color: white;
+}
+
+/* channel description */
+.description {
+  background: #f9f9f9;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 20px;
+  border: 1px solid #eee;
+}
+
+.video-stats {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+/* comments section */
+.comments-section {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.comments-section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* comment */
+.comment {
+  background-color: #f8f8f8;
+  color: black;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  position: relative;
+  font-size: 14px;
+  display: flex;
+  gap: 12px;
+}
+
+.comment strong {
+  font-weight: 600;
+  color: #222;
+}
+
+/* dots for edit and delete options */
+.comment .dots {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  color: #d87093;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-header {
+  margin: 0;
+  font-size: 14px;
+  color: #222;
+}
+
+.comment-time {
+  font-weight: normal;
+  color: #888;
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.comment-text {
+  font-size: 14px;
+  margin: 6px 0;
+  color: #333;
+}
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+}
+
+.comment-actions span:hover {
+  color: #111;
+}
+
+/* static vidoes on the side */
+.side-videos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.side-video {
+  display: flex;
+  gap: 12px;
+  background-color: #fafafa;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.side-video:hover {
+  background-color: #f5f5f5;
+}
+
+.side-video img {
+  width: 120px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.side-video p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.side-video small {
+  font-size: 12px;
+  color: #555;
+}
+
+.comments-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 13px;
+}
+
+.sort-by::before {
+  content: '🔽';
+  margin-right: 6px;
+}
+
+/* add new comment */
+.add-comment {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* comment icon */
+.comment-avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #eee;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 50%;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: 1px solid black;
+  color: black;
+  background-color: rgb(193, 193, 193);
+  font-size: 14px;
+  outline: none;
+}
+
+.comment-text{
+  color: black;
+}
+
+.comment-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.comment-buttons button {
+  background-color: white;
+  color: #b8005c;
+  border: 1px solid #b8005c;
+  padding: 4px 12px;                 
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.comment-buttons button:hover {
+  background-color: #b8005c;
+  color: white;
+}
+
+.like-btn.active {
+  color: green;
+}
+
+.dislike-btn.active {
+  color: red;
+}

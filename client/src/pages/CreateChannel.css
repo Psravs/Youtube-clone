@@ -1,0 +1,59 @@
+
+/* creating new channel page*/
+.create-channel-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff0f5;
+}
+
+/* channel card for input from user */
+.create-channel-card {
+  background: #ffe4ec;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 350px;
+}
+
+/* channel card - title */
+.create-channel-card h2 {
+  text-align: center;
+  color: #c44569;
+}
+
+/* channel card - input */
+
+.create-channel-card input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+}
+
+/* channel card - button */
+
+.create-channel-card button {
+  background-color: #c44569;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* channel card - button hover effect */
+
+.create-channel-card button:hover {
+  background-color: #a83757;
+  /* background-color: #f888a8ea;
+  color: black; */
+}
+
+/* #f78fb3 */

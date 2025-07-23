@@ -1,0 +1,183 @@
+
+/* header section */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  font-family: 'Roboto', sans-serif;
+  color: #0f0f0f;
+}
+
+/* left section - hamburger and youtube logo */
+.left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* hamburger */
+.menu-icon {
+  cursor: pointer;
+  font-size: 26px;
+  color: #0f0f0f;
+  margin-right: 16px;
+}
+
+/* .logo {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #cc0000;
+} */
+
+/* youtube logo */
+.yt-logo {
+  height: 24px;
+  cursor: pointer;
+}
+
+
+/* center section - search input, icon */
+.center {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* search input */
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background-color: rgb(33, 33, 33);
+  border-right: none;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+/* search icon */
+.search-icon {
+  background-color: #f8f8f8;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  color: rgb(33, 33, 33);
+}
+
+/* mic icon */
+.mic-icon {
+  margin-left: 12px;
+  cursor: pointer;
+  color: rgb(33, 33, 33);
+}
+
+/* right section - sign in button, create channel, logged in icon */
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* sign in button */
+.sign-in-btn {
+  padding: 6px 16px;
+  background-color: white;
+  border: 1px solid #065fd4;
+  color: #065fd4;
+  font-weight: bold;
+  border-radius: 18px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* sign in button hover effect */
+.sign-in-btn:hover {
+  background-color: #065fd4;
+  color: white;
+}
+
+/* logged in user initial icon */
+.user-initial {
+  background-color: #c44569; 
+  color: white;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* logged in user initial icon hover effect */
+.user-initial:hover {
+  transform: scale(1.1);
+}
+
+/* logged in user icon dropdown*/
+.user-dropdown {
+  position: relative;
+}
+
+/* dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  padding: 8px 0;
+  z-index: 1001;
+  width: 150px;
+}
+
+.dropdown-menu div {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #111;
+}
+
+/* dropdown menu option hover effect */
+.dropdown-menu div:hover {
+  background-color: #f2f2f2;
+}
+
+/* create channel button */
+.create-btn {
+  margin-right: 12px;
+  background-color: white;
+  border: 1px solid #b8005c;
+  color: #b8005c;
+  padding: 6px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* create channel button hover effect*/
+.create-btn:hover {
+  background-color: #b8005c;
+  color: white;
+}

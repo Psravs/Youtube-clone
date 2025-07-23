@@ -1,0 +1,58 @@
+
+/* displaying videos in grid format */
+.videos-grid {
+  display: grid;
+  gap: 24px;
+  padding: 10px 20px;
+}
+
+/* media queries */
+
+/* larger screnn - laptop/desktop */
+@media (min-width: 1024px) {
+  .videos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* medium screen - tab */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* small screen - mobile phone */
+@media (max-width: 639px) {
+  .videos-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* video card on hover effect */
+.video-card:hover {
+  transform: scale(1.03);
+}
+
+/* thumbnail of video */
+.thumbnail {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+/* vide title */
+.video-card h3 {
+  font-size: 16px;
+  margin: 10px;
+  color: #0f0f0f;
+  font-weight: 500;
+}
+
+/* video description */
+.video-card p {
+  margin: 0 10px 10px;
+  font-size: 14px;
+  color: #606060;
+}

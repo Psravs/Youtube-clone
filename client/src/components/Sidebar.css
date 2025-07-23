@@ -1,0 +1,71 @@
+
+/* sidebar - hamburger otions */
+.sidebar {
+  width: 200px;
+  background-color: white;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  height: 100%;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-100%);
+  z-index: 999;
+}
+
+/* when sidebar is oepend by clciking hamburger */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* sidebar content/ items */
+.sidebar-items {
+  list-style: none;
+  padding: 8px;
+}
+
+/* li items */
+.sidebar-items li {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #0f0f0f;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* list items on hover effect */
+.sidebar-items li:hover {
+ transform: scale(1.03);
+  background-color: #f5f5f5;
+}
+
+/* .sidebar-items li span:first-child {
+  margin-right: 16px;
+  font-size: 18px;
+} */
+
+hr {
+  margin: 8px 0;
+  border: none;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* home option hover efefct */
+.sidebar-items li.home:hover {
+  transform: scale(1.08);
+  background-color: #fce4ec;
+  color: #c2185b;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(194, 24, 91, 0.2);
+}
+
+/* your channel option hover effcet */
+.sidebar-items li.channel:hover {
+  transform: scale(1.08);
+  background-color: #e3f2fd;
+  color: #1565c0;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(21, 101, 192, 0.2);
+}

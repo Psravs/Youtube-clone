@@ -1,0 +1,62 @@
+/* home page */
+.home-page {
+  flex: 1; 
+  width: 100%;
+  padding: 20px;
+  background-color: #fffafb;
+  min-height: 100vh;
+  /* margin-top: 10px;  */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* home page heaidng */
+.home-page h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f0f0f; 
+  margin-bottom: 20px;
+}
+
+/* videos grid on home page */
+.videos-grid {
+  display: grid;
+  gap: 24px;
+}
+
+/* media queries  */
+/* on larger screen - laptop/desktop */
+@media (min-width: 1024px) {
+  .videos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* medium screen - tab */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* small screen - mobile phone */
+@media (max-width: 639px) {
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* video cards */
+.video-card {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* thumbnail */
+.thumbnail {
+  width: 100%;
+  border-radius: 8px;
+}

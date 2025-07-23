@@ -1,0 +1,39 @@
+.nf-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fffafa;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+}
+
+.nf-container h1 {
+  font-size: 100px;
+  margin: 0;
+  color: #f06292;
+}
+
+.nf-container p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.home-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f06292;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.home-btn:hover {
+  background-color: #e65183;
+}
