@@ -1,16 +1,19 @@
 //imporitng react libarry, useState hook from react
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // imporitng useParams hook from react router dom
 import { useParams } from 'react-router-dom';
-// imporitng videos data
-import videos from '../data/videosData';
+// imporitng NotFound page
 import NotFound from './NotFound';
 import './VideoDetails.css';
+import axios from 'axios';
 
 function VideoDetails() {
   // universe 1
   const { id } = useParams();
-  const video = videos.find((v) => v.id === parseInt(id));
+
+  // local state for storing video from backend
+  const [video, setVideo] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // default comments
   const [comments, setComments] = useState([
@@ -30,6 +33,24 @@ function VideoDetails() {
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
 
+  // fetch video data from backend
+  useEffect(() => {
+    const fetchVideo = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8080/api/videos/${id}`);
+        setVideo(res.data);
+        setLikes(res.data.likes);
+        setDislikes(res.data.dislikes);
+      } catch (err) {
+        console.error('Error fetching video details', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchVideo();
+  }, [id]);
+
+  if (loading) return <div>Loading...</div>;
   if (!video) return <NotFound />;
 
   // adding new comment
@@ -66,32 +87,34 @@ function VideoDetails() {
   };
 
   // handle like button
-  const handleLike = () => {
-    if (liked) {
-      setLikes(likes - 1);
-      setLiked(false);
-    } else {
-      setLikes(likes + 1);
-      if (disliked) {
-        setDislikes(dislikes - 1);
-        setDisliked(false);
-      }
+  const handleLike = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await axios.post(`http://localhost:8080/api/videos/like/${video._id}`, {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setLikes(res.data.likes);
+      setDislikes(res.data.dislikes);
       setLiked(true);
+      setDisliked(false);
+    } catch (err) {
+      alert('Login to like this video.');
     }
   };
 
   // handle dislike button
-  const handleDislike = () => {
-    if (disliked) {
-      setDislikes(dislikes - 1);
-      setDisliked(false);
-    } else {
-      setDislikes(dislikes + 1);
-      if (liked) {
-        setLikes(likes - 1);
-        setLiked(false);
-      }
+  const handleDislike = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await axios.post(`http://localhost:8080/api/videos/dislike/${video._id}`, {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setLikes(res.data.likes);
+      setDislikes(res.data.dislikes);
       setDisliked(true);
+      setLiked(false);
+    } catch (err) {
+      alert('Login to dislike this video.');
     }
   };
 
@@ -200,15 +223,20 @@ function VideoDetails() {
 
       <div className="side-videos">
         <h4>More Videos</h4>
-        {videos.slice(0, 5).map((vid) => (
-          <div key={vid.id} className="side-video">
-            <img src={vid.thumbnail} alt="thumb" />
-            <div>
-              <p>{vid.title}</p>
-              <small>{vid.channel}</small>
+        {/* dummy fallback */}
+        {video && video.tags && video.tags.length > 0 ? (
+          video.tags.map((tag, index) => (
+            <div key={index} className="side-video">
+              <img src={video.thumbnail} alt="thumb" />
+              <div>
+                <p>{video.title}</p>
+                <small>{video.channel}</small>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>No related videos found.</p>
+        )}
       </div>
     </div>
   );

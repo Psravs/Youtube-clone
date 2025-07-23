@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 //imporitng mongoose to connect with MongoDB 
 import mongoose from 'mongoose';
 import authRoutes from './routes/authRoutes.js';
+import videoRoutes from './routes/videoRoutes.js';
+
 
 dotenv.config();
 
@@ -14,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/videos', videoRoutes);
 
 const PORT = process.env.PORT || 8080;
 

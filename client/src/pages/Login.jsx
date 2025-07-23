@@ -27,13 +27,13 @@ function Login({ setIsLoggedIn, setUserInitial }) {
 
       const { token, username } = res.data;
 
-      localStorage.setItem('token', token); // ✅ store JWT token
-      localStorage.setItem('username', username); // ✅ store username
-      setIsLoggedIn(true); // ✅ update app state
-      setUserInitial(username[0].toUpperCase()); // ✅ show initial icon
-      navigate('/'); // ✅ redirect to home page
+      localStorage.setItem('token', token); // store JWT token
+      localStorage.setItem('username', username); //store username
+      setIsLoggedIn(true); //update app state
+      setUserInitial(username[0].toUpperCase()); //show initial icon
+      navigate('/'); //redirect to home page
     } catch (err) {
-      alert(err.response?.data?.error || 'Login failed'); // more useful error
+      alert(err.response?.data?.error || 'Login failed'); //error
     }
   };
 
