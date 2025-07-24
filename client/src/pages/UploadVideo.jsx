@@ -1,8 +1,11 @@
+// Importing React and hooks
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './UploadVideo.css';
 
 function UploadVideo() {
+  // useState for video form data
   const [videoData, setVideoData] = useState({
     title: '',
     views: '',
@@ -12,10 +15,15 @@ function UploadVideo() {
     tags: '',
   });
 
+  // using useNavigate hook for redirection
+  const navigate = useNavigate();
+
+  // handle form field change
   const handleChange = (e) => {
     setVideoData({ ...videoData, [e.target.name]: e.target.value });
   };
 
+  // handle form submission/upload
   const handleUpload = async (e) => {
     e.preventDefault();
 
@@ -41,12 +49,14 @@ function UploadVideo() {
       );
 
       alert("Video Uploaded!");
+      navigate('/channel'); // ✅ redirecting to channel page after successful upload
     } catch (err) {
       console.error("Upload failed:", err);
       alert("Upload failed. Please try again.");
     }
   };
 
+  // universe 2: UI
   return (
     <div className="upload-form-container">
       <h2>Upload Video</h2>

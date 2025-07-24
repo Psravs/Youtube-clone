@@ -1,3 +1,4 @@
+// VideoDetails.jsx
 //imporitng react libarry, useState hook from react
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'; // useParams hook
@@ -86,14 +87,11 @@ function VideoDetails() {
   const handleLike = async () => {
     try {
       const token = localStorage.getItem('token');
-      console.log(token);
       const res = await axios.post(
         `http://localhost:8080/api/videos/like/${video._id}`,
         {},
         {
-          headers: { 
-            Authorization: `Bearer ${token}` 
-          }
+          headers: { Authorization: `Bearer ${token}` }
         }
       );
       setLikes(res.data.likes);
@@ -108,7 +106,6 @@ function VideoDetails() {
   const handleDislike = async () => {
     try {
       const token = localStorage.getItem('token');
-      console.log(token);
       const res = await axios.post(
         `http://localhost:8080/api/videos/dislike/${video._id}`,
         {},
@@ -219,7 +216,6 @@ function VideoDetails() {
         </div>
       </div>
 
-      {/* side videos */}
       <div className="side-videos">
         <h4>More Videos</h4>
         {relatedVideos.length > 0 ? (

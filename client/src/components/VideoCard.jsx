@@ -1,53 +1,33 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import './VideoCard.css';
+import axios from 'axios';
 
 function VideoCard({ video }) {
   const [likes, setLikes] = useState(video.likes || 0);
   const [dislikes, setDislikes] = useState(video.dislikes || 0);
+  const [liked, setLiked] = useState(false);
+  const [disliked, setDisliked] = useState(false);
 
   const handleLike = async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      alert("Please login to like");
-      return;
-    }
-
     try {
-      const res = await axios.post(
-        `http://localhost:8080/api/videos/like/${video._id}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      );
+      const res = await axios.post(`http://localhost:8080/api/videos/like/${video._id}`);
       setLikes(res.data.likes);
-      setDislikes(res.data.dislikes); // optional update
+      setLiked(true);
+      setDisliked(false); //reset if needed
     } catch (err) {
-      console.error("Error liking video", err);
+      console.error("Like error:", err);
     }
   };
 
   const handleDislike = async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      alert("Please login to dislike");
-      return;
-    }
-
     try {
-      const res = await axios.post(
-        `http://localhost:8080/api/videos/dislike/${video._id}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      );
+      const res = await axios.post(`http://localhost:8080/api/videos/dislike/${video._id}`);
       setDislikes(res.data.dislikes);
-      setLikes(res.data.likes); // optional update
+      setDisliked(true);
+      setLiked(false); //reset if needed
     } catch (err) {
-      console.error("Error disliking video", err);
+      console.error("Dislike error:", err);
     }
   };
 
@@ -65,8 +45,18 @@ function VideoCard({ video }) {
       <p>{video.views} • {video.time}</p>
 
       <div className="video-actions">
-        <button onClick={handleLike}>👍 {likes}</button>
-        <button onClick={handleDislike}>👎 {dislikes}</button>
+        <button
+          onClick={handleLike}
+          style={{ color: liked ? 'green' : 'black' }}
+        >
+          👍 {likes}
+        </button>
+        <button
+          onClick={handleDislike}
+          style={{ color: disliked ? 'red' : 'black' }}
+        >
+          👎 {dislikes}
+        </button>
       </div>
     </div>
   );
