@@ -1,57 +1,53 @@
-//importing react , useState hook from react 
 import React, { useState } from 'react';
 import './CreateChannel.css';
-//importing useNavigate from react-router-dom
 import { useNavigate } from 'react-router-dom';
 
 function CreateChannel() {
-  // universe 1
-  const [channelName, setChannelName] = useState('');
-  const [profileImage, setProfileImage] = useState('');
+  const [name, setName] = useState('');
+  const [handle, setHandle] = useState('');
   const navigate = useNavigate();
 
-  const handleCreate = () => {
-    if (!channelName.trim()) {
-      alert("Please enter a channel name.");
-      return;
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    localStorage.setItem("channelCreated", "true");
-    localStorage.setItem("channelName", channelName);
-    if (profileImage) {
-      localStorage.setItem("channelPic", profileImage);
-    }
+    localStorage.setItem("channelCreated", true);
+    localStorage.setItem("channelName", name);
+    localStorage.setItem("channelHandle", handle);
+    localStorage.setItem("channelInitial", name[0].toUpperCase());
 
-    alert("Channel created successfully!");
-    navigate("/channel");
+    alert("Channel Created!");
+    navigate('/channel');
   };
 
-  // unievrse 2
-
   return (
-    // create channel card
-    <div className="create-channel-page">
-      <form className="create-channel-card" onSubmit={(e) => { e.preventDefault(); handleCreate(); }}>
-        <h2>Create Your Channel</h2>
+    <div className="create-channel-container">
+      <h2>How you'll appear</h2>
+      <form className="create-form" onSubmit={handleSubmit}>
+        <div className="profile-pic-placeholder">
+          <img
+            src="https://www.svgrepo.com/show/382106/user-default.svg"
+            alt="Default"
+          />
+          <p className="select-pic">Select picture</p>
+        </div>
 
-{/* channel anme */}
-        <input 
-          type="text" 
-          placeholder="Channel Name" 
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
           required
-          value={channelName}
-          onChange={(e) => setChannelName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
         />
 
-{/* profile pciture */}
-        <input 
-          type="text" 
-          placeholder="Profile Picture URL (optional)" 
-          value={profileImage}
-          onChange={(e) => setProfileImage(e.target.value)}
+        <input
+          type="text"
+          placeholder="Handle"
+          value={handle}
+          required
+          onChange={(e) => setHandle(e.target.value)}
         />
 
-        <button type="submit">Create Channel</button>
+        <button type="submit">Create channel</button>
       </form>
     </div>
   );

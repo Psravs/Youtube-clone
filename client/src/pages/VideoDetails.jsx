@@ -1,39 +1,29 @@
 //imporitng react libarry, useState hook from react
 import React, { useState, useEffect } from 'react';
-// imporitng useParams hook from react router dom
-import { useParams } from 'react-router-dom';
-// imporitng NotFound page
-import NotFound from './NotFound';
+import { useParams } from 'react-router-dom'; // useParams hook
+import NotFound from './NotFound'; // fallback page
 import './VideoDetails.css';
 import axios from 'axios';
 
 function VideoDetails() {
-  // universe 1
   const { id } = useParams();
 
-  // local state for storing video from backend
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // default comments
+  const [videos, setVideos] = useState([]); // all videos
   const [comments, setComments] = useState([
     { id: 1, author: 'Nami', text: 'Love this video! ❤️' },
     { id: 2, author: 'Ussopp', text: 'Wow amazing!' }
   ]);
-
-  // state for adding new comments
   const [newComment, setNewComment] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [editedText, setEditedText] = useState('');
   const [menuOpenId, setMenuOpenId] = useState(null);
-
-  // like/dislike states
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
 
-  // fetch video data from backend
   useEffect(() => {
     const fetchVideo = async () => {
       try {
@@ -47,13 +37,23 @@ function VideoDetails() {
         setLoading(false);
       }
     };
+
+    const fetchAllVideos = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8080/api/videos`);
+        setVideos(res.data);
+      } catch (err) {
+        console.error("Failed to fetch videos list", err);
+      }
+    };
+
     fetchVideo();
+    fetchAllVideos();
   }, [id]);
 
   if (loading) return <div>Loading...</div>;
   if (!video) return <NotFound />;
 
-  // adding new comment
   const handleAddComment = () => {
     if (newComment.trim() === '') return;
     const newEntry = {
@@ -65,7 +65,6 @@ function VideoDetails() {
     setNewComment('');
   };
 
-  // edit comment
   const handleEditComment = (id) => {
     const commentToEdit = comments.find(c => c.id === id);
     setEditedText(commentToEdit.text);
@@ -73,26 +72,30 @@ function VideoDetails() {
     setMenuOpenId(null);
   };
 
-  // save edited comment
   const handleSaveEdit = () => {
     setComments(comments.map(c => c.id === editingId ? { ...c, text: editedText } : c));
     setEditingId(null);
     setEditedText('');
   };
 
-  // deleting comment
   const handleDeleteComment = (id) => {
     setComments(comments.filter(c => c.id !== id));
     setMenuOpenId(null);
   };
 
-  // handle like button
   const handleLike = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post(`http://localhost:8080/api/videos/like/${video._id}`, {}, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      console.log(token);
+      const res = await axios.post(
+        `http://localhost:8080/api/videos/like/${video._id}`,
+        {},
+        {
+          headers: { 
+            Authorization: `Bearer ${token}` 
+          }
+        }
+      );
       setLikes(res.data.likes);
       setDislikes(res.data.dislikes);
       setLiked(true);
@@ -102,13 +105,17 @@ function VideoDetails() {
     }
   };
 
-  // handle dislike button
   const handleDislike = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post(`http://localhost:8080/api/videos/dislike/${video._id}`, {}, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      console.log(token);
+      const res = await axios.post(
+        `http://localhost:8080/api/videos/dislike/${video._id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
       setLikes(res.data.likes);
       setDislikes(res.data.dislikes);
       setDisliked(true);
@@ -118,9 +125,9 @@ function VideoDetails() {
     }
   };
 
-  // universe 2 
+  const relatedVideos = videos.filter(v => v._id !== video._id).slice(0, 5);
+
   return (
-    // vidoe palyer page
     <div className="video-details-page">
       <div className="main-video-section">
         <video controls className="main-video" poster={video.thumbnail}>
@@ -153,11 +160,9 @@ function VideoDetails() {
           <p>This video is a peek into my passion towards my career and hobbies. I hope you enjoy it to the fullest and find peace in my videos! And if you do, please don't forget to like, share and subscribe!! 🌸</p>
         </div>
 
-{/* comments section */}
         <div className="comments-section">
           <h3>{comments.length} Comments</h3>
 
-{/* adding new comment */}
           <div className="add-comment">
             <div className="channel-avatar-icon">Y</div>
             <input
@@ -170,7 +175,6 @@ function VideoDetails() {
             />
           </div>
 
-{/* existing commnets */}
           {comments.map(comment => (
             <div key={comment.id} className="comment">
               <div className="channel-avatar-icon">
@@ -188,7 +192,6 @@ function VideoDetails() {
                       onChange={(e) => setEditedText(e.target.value)}
                     />
                     <div className="comment-buttons">
-                      {/* saving comment */}
                       <button onClick={handleSaveEdit}>Save</button>
                       <button onClick={() => setEditingId(null)}>Cancel</button>
                     </div>
@@ -197,7 +200,6 @@ function VideoDetails() {
                   <p className="comment-text">{comment.text}</p>
                 )}
               </div>
-              {/* dots fro edit and delete options */}
               <div
                 className="dots"
                 onClick={() =>
@@ -206,10 +208,8 @@ function VideoDetails() {
               >
                 ⋮
                 {menuOpenId === comment.id && (
-                  // editing comment option
                   <div className="comment-menu">
                     <div onClick={() => handleEditComment(comment.id)}>Edit</div>
-                    {/* deleting comment option */}
                     <div onClick={() => handleDeleteComment(comment.id)}>Delete</div>
                   </div>
                 )}
@@ -219,18 +219,16 @@ function VideoDetails() {
         </div>
       </div>
 
-      {/* videos on the side section on video palyer page */}
-
+      {/* side videos */}
       <div className="side-videos">
         <h4>More Videos</h4>
-        {/* dummy fallback */}
-        {video && video.tags && video.tags.length > 0 ? (
-          video.tags.map((tag, index) => (
-            <div key={index} className="side-video">
-              <img src={video.thumbnail} alt="thumb" />
+        {relatedVideos.length > 0 ? (
+          relatedVideos.map((v) => (
+            <div key={v._id} className="side-video">
+              <img src={v.thumbnail} alt="thumb" />
               <div>
-                <p>{video.title}</p>
-                <small>{video.channel}</small>
+                <p>{v.title}</p>
+                <small>{v.channel}</small>
               </div>
             </div>
           ))

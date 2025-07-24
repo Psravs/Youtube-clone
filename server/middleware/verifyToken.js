@@ -1,19 +1,27 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+// Load .env variables in this file
+dotenv.config();
 
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  // check if token provided
-  if (!authHeader || !authHeader.startsWith('Bearer '))
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    console.log("❌ No token found in headers");
     return res.status(401).json({ error: 'No token provided' });
+  }
 
   const token = authHeader.split(' ')[1];
+
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // now accessible in any protected route
+    console.log("✅ Token verified, user info:", decoded);
+    req.user = decoded;
     next();
   } catch (err) {
-    return res.status(403).json({ error: 'Token is not valid' });
+    console.log("❌ Token verification failed");
+    return res.status(403).json({ error: 'Token invalid' });
   }
 };
 

@@ -13,6 +13,7 @@ import Register from './pages/Register';
 import VideoDetails from './pages/VideoDetails';
 import CreateChannel from './pages/CreateChannel';
 import SearchResults from './components/SearchResults';
+import UploadVideo from './pages/UploadVideo';
 import './App.css';
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
             <Route path="/videos/:id" element={<VideoDetails />} />
             <Route path="/create-channel" element={<CreateChannel />} />
             <Route path="/search/:query" element={<SearchResults />} />
+            <Route path="/upload-video" element={<UploadVideo />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
