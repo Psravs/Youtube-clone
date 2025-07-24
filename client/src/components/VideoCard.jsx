@@ -9,7 +9,7 @@ function VideoCard({ video }) {
   // universe 2 
   return (
     <div className="video-card">
-      <Link to={`/watch/${video.id}`}>
+      <Link to={`/videos/${video._id}`}>  
         <img src={video.thumbnail} alt="thumbnail" className="thumbnail" />
       </Link>
       <Link to={`/watch/${video.id}`}>

@@ -1,42 +1,45 @@
-
-// imporitng express framework 
 import express from 'express';
-import Video from '../models/Video.js';
+import Video from '../models/videoModel.js';
 import verifyToken from '../middleware/verifyToken.js';
 
 const router = express.Router();
 
-//get video stats (likes/dislikes)
+// ✅ New: get all videos
+router.get('/', async (req, res) => {
+  try {
+    const videos = await Video.find();
+    res.json(videos);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch videos' });
+  }
+});
+
+// ✅ Get individual video (by id)
 router.get('/:id', async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
     if (!video) return res.status(404).json({ error: 'Video not found' });
 
-    res.json({ likes: video.likes, dislikes: video.dislikes });
+    res.json(video);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch video' });
   }
 });
 
-//like a video
+// ✅ Like route
 router.post('/like/:id', verifyToken, async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
     if (!video) return res.status(404).json({ error: 'Video not found' });
 
     const userId = req.user.id;
-
-    //prreventing duplicate likes
     if (!video.likedBy.includes(userId)) {
       video.likes++;
       video.likedBy.push(userId);
-
-      //remove from dislikes if previously disliked
       if (video.dislikedBy.includes(userId)) {
         video.dislikes--;
         video.dislikedBy = video.dislikedBy.filter(id => id.toString() !== userId);
       }
-
       await video.save();
     }
 
@@ -46,25 +49,20 @@ router.post('/like/:id', verifyToken, async (req, res) => {
   }
 });
 
-// dislike a video
+// ✅ Dislike route
 router.post('/dislike/:id', verifyToken, async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
     if (!video) return res.status(404).json({ error: 'Video not found' });
 
     const userId = req.user.id;
-
-    //preventing duplicate dislikes
     if (!video.dislikedBy.includes(userId)) {
       video.dislikes++;
       video.dislikedBy.push(userId);
-
-      //remove from likes if previously liked
       if (video.likedBy.includes(userId)) {
         video.likes--;
         video.likedBy = video.likedBy.filter(id => id.toString() !== userId);
       }
-
       await video.save();
     }
 

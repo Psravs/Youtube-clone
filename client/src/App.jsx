@@ -63,7 +63,7 @@ function App() {
             <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} setUserInitial={setUserInitial} />} />
             <Route path="/channel" element={<Channel />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/watch/:id" element={<VideoDetails />} />
+            <Route path="/videos/:id" element={<VideoDetails />} />
             <Route path="/create-channel" element={<CreateChannel />} />
             <Route path="/search/:query" element={<SearchResults />} />
             <Route path="*" element={<NotFound />} />
