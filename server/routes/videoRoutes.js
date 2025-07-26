@@ -1,6 +1,7 @@
 // importing required modules
 import express from 'express';
 import Video from '../models/videoModel.js';
+import verifyToken from '../middlewares/verifyToken.js';
 
 const router = express.Router();
 
@@ -37,18 +38,33 @@ router.post('/', async (req, res) => {
   }
 });
 
-// // Deleting video by:id
-// router.delete('/:id', verifyToken, async (req, res) => {
-//   try {
-//     const video = await Video.findByIdAndDelete(req.params.id);
-//     if (!video) return res.status(404).json({ error: 'Video not found' });
+// PUT (Edit video)
+router.put('/:id', verifyToken, async (req, res) => {
+  try {
+    const updated = await Video.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
 
-//     res.json({ message: 'Video deleted successfully' });
-//   } catch (err) {
-//     console.error("❌ Backend delete error:", err);
-//     res.status(500).json({ error: 'Failed to delete video' });
-//   }
-// });
+    if (!updated) return res.status(404).json({ error: 'Video not found' });
+
+    res.json(updated);
+  } catch (err) {
+    console.error('❌ Edit error:', err);
+    res.status(500).json({ error: 'Failed to update video' });
+  }
+});
+
+router.delete('/:id', verifyToken, async (req, res) => {
+  try {
+    const video = await Video.findByIdAndDelete(req.params.id);
+    if (!video) return res.status(404).json({ error: 'Video not found' });
+
+    res.status(200).json({ message: 'Video deleted successfully' });
+  } catch (err) {
+    console.error("❌ Backend delete error:", err);
+    res.status(500).json({ error: 'Failed to delete video' });
+  }
+});
 
 // Like a video (NO login required)
 router.post('/like/:id', async (req, res) => {

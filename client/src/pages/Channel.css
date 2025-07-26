@@ -46,6 +46,13 @@
   color: #555;
 }
 
+.videos-heading {
+  font-size: 24px;
+  font-weight: bolder;
+  margin: 24px 0 12px;
+  color: #0f0f0f;
+}
+
 /* upload button */
 .upload-btn {
   margin-left: auto;

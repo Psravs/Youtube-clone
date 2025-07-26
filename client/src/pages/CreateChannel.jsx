@@ -23,13 +23,13 @@ function CreateChannel() {
     <div className="create-channel-container">
       <h2>How you'll appear</h2>
       <form className="create-form" onSubmit={handleSubmit}>
-        <div className="profile-pic-placeholder">
+        {/* <div className="profile-pic-placeholder">
           <img
             src="https://www.svgrepo.com/show/382106/user-default.svg"
             alt="Default"
           />
           <p className="select-pic">Select picture</p>
-        </div>
+        </div> */}
 
         <input
           type="text"

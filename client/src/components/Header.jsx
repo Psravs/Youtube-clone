@@ -60,6 +60,14 @@ function Header({ onMenuClick, isLoggedIn, userInitial }) {
     setDropdownVisible(!dropdownVisible);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('channelCreated');
+    setDropdownVisible(false);
+    navigate('/login');
+    window.location.reload();
+  };
 
   //universe 2 
   return (
@@ -82,6 +90,8 @@ function Header({ onMenuClick, isLoggedIn, userInitial }) {
           type="text"
           placeholder="Search"
           className="search-input"
+          name="search"
+          id="search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -123,6 +133,7 @@ function Header({ onMenuClick, isLoggedIn, userInitial }) {
                     // if channel already craeted then dropdown add
                     <div onClick={handleChannelClick}>Your Channel</div>
                   )}
+                  <div onClick={handleLogout}>Logout</div>
                 </div>
               )}
             </div>
