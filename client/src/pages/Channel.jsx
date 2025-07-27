@@ -8,22 +8,25 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Channel() {
+  // universe 1 
   const navigate = useNavigate();
   const storedUser = localStorage.getItem('username');
   const [userVideos, setUserVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [showEdit, setShowEdit] = useState(false);
+  // editing video
   const [editData, setEditData] = useState({
     _id: '',
     title: '',
-    views: '',
+    views: ' views',
     time: '',
     thumbnail: '',
     videoUrl: '',
   });
 
   useEffect(() => {
+    // function to get the video from db
     const fetchVideos = async () => {
       try {
         const res = await axios.get('http://localhost:8080/api/videos');
@@ -41,6 +44,7 @@ function Channel() {
     if (storedUser) fetchVideos();
   }, [storedUser]);
 
+  // funciton to delete video 
   const handleDelete = async (id) => {
     const confirm = window.confirm('Are you sure to delete this video?');
     if (!confirm) return;
@@ -62,15 +66,18 @@ function Channel() {
     }
   };
 
+  // function to edit when video clicked
   const handleEditClick = (video) => {
     setEditData(video);
     setShowEdit(true);
   };
 
+  // setting edited data of video 
   const handleEditChange = (e) => {
     setEditData({ ...editData, [e.target.name]: e.target.value });
   };
 
+    // saving edited data of video 
   const handleSaveEdit = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -96,6 +103,7 @@ function Channel() {
     }
   };
 
+  // if user not logged in
   if (!storedUser) {
     return (
       <div className="channel-page">
@@ -104,21 +112,26 @@ function Channel() {
     );
   }
 
+  // universe 2 
   return (
+    // your channel page
     <div className="channel-page">
+      {/* cover image of channel - static */}
       <img
         className="channel-banner"
         src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/02/one-piece.jpg"
         alt="Banner"
       />
 
+{/* channel details - name, icon, description, upload vidoes option. */}
       <div className="channel-header">
         <div className="channel-avatar-icon">
           <span>{storedUser?.charAt(0).toUpperCase()}</span>
         </div>
         <div>
           <h2>{storedUser}</h2>
-          <p className="channel-description"> Hey!! Welcome to my channel!!</p>
+          <p className="channel-description">Konnichiwa!!! I welcome you to my channel where you'll find lots of passion towards music and nature to bring calm to your chaos. I am also an anime lover who is on the road to become a web developer 😎. 
+          #SeeYouOnTheOtherSide </p>
         </div>
         <button onClick={() => navigate('/upload-video')} className="upload-btn">
           Upload Video
@@ -176,6 +189,8 @@ function Channel() {
         </div>
       )}
 
+
+      {/* Edit option for user uploaded videos */}
       {showEdit && (
         <div className="edit-modal">
           <div className="edit-form">

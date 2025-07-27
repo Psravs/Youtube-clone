@@ -2,10 +2,14 @@
 /* video player page */
 .video-details-page {
   display: flex;
-  padding: 24px;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 16px;
   gap: 24px;
   background-color: white;
   font-family: Arial, sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .main-video-section {
@@ -200,6 +204,11 @@
   gap: 12px;
 }
 
+.side-videos h4{
+  color: black;
+  font-size: large;
+}
+
 .side-video {
   display: flex;
   gap: 12px;
@@ -314,4 +323,20 @@
 
 .dislike-btn.active {
   color: red;
+}
+
+/* media queries */
+/* media query */
+@media(min-width: 1024px) {
+  .video-details-page{
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+/* medium screen - tab */
+@media (max-width: 768px){
+  .video-details-page{
+    margin-top: 70px;
+  }
 }

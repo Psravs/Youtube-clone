@@ -1,13 +1,19 @@
+
+// importing react library and useState hook 
 import React, { useState } from 'react';
 import './CreateChannel.css';
+// imporitng useNavigate hook from react router dom 
 import { useNavigate } from 'react-router-dom';
 
 function CreateChannel() {
+  // universe 1
   const [name, setName] = useState('');
   const [handle, setHandle] = useState('');
   const navigate = useNavigate();
 
+  // function for submitting channel creation form 
   const handleSubmit = (e) => {
+    // prevents from auto submitting and reloading
     e.preventDefault();
 
     localStorage.setItem("channelCreated", true);
@@ -15,22 +21,17 @@ function CreateChannel() {
     localStorage.setItem("channelHandle", handle);
     localStorage.setItem("channelInitial", name[0].toUpperCase());
 
-    alert("Channel Created!");
-    navigate('/channel');
+    alert("Channel Created!"); //success msg
+    navigate('/channel'); //naviagting to channel page 
   };
 
+  // unievrse 2 
   return (
+    // channel craetion form for user 
     <div className="create-channel-container">
       <h2>How you'll appear</h2>
       <form className="create-form" onSubmit={handleSubmit}>
-        {/* <div className="profile-pic-placeholder">
-          <img
-            src="https://www.svgrepo.com/show/382106/user-default.svg"
-            alt="Default"
-          />
-          <p className="select-pic">Select picture</p>
-        </div> */}
-
+        
         <input
           type="text"
           placeholder="Name"

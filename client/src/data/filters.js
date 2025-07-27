@@ -1,5 +1,5 @@
 
-// filter options displayed on home screen
+// filter options displayed on home screen - can be modified if needed 
 const filters = [
   "All",
   "4K",
@@ -9,7 +9,9 @@ const filters = [
   "Music",
   "Gaming",
   "Coding",
-  "Animals"
+  "Animals",
+  "Art",
+  "Movies"
 ];
 
 export default filters;

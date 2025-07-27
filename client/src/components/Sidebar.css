@@ -4,10 +4,10 @@
   width: 200px;
   background-color: white;
   position: fixed;
-  top: 60px;
   left: 0;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   transition: all 0.3s ease-in-out;
   transform: translateX(-100%);
   z-index: 999;
@@ -28,11 +28,12 @@
 .sidebar-items li {
   display: flex;
   align-items: center;
-  padding: 10px 16px;
+  padding: 14px 16px;
   cursor: pointer;
   font-size: 14px;
   color: #0f0f0f;
   transition: transform 0.2s ease, background-color 0.2s ease;
+  word-break: break-word;
 }
 
 /* list items on hover effect */
@@ -40,11 +41,6 @@
  transform: scale(1.03);
   background-color: #f5f5f5;
 }
-
-/* .sidebar-items li span:first-child {
-  margin-right: 16px;
-  font-size: 18px;
-} */
 
 hr {
   margin: 8px 0;
@@ -68,4 +64,21 @@ hr {
   color: #1565c0;
   font-weight: bold;
   box-shadow: 0 4px 12px rgba(21, 101, 192, 0.2);
+}
+
+/* media queries */
+/* medium screen - tab */
+@media (max-width: 768px){
+  .sidebar{
+  margin-top: 80px;
+  }
+}
+
+/* small screen - mobile phone */
+@media(max-width: 480px){
+  .sidebar open{
+    height: auto;
+    overflow-y: scroll;
+    font-size: 10px;
+  }
 }

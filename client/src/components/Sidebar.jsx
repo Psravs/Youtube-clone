@@ -1,4 +1,4 @@
-//imporitng recat library from react 
+//imporitng react library  
 import React from 'react';
 import './Sidebar.css';
 //importing navigate hook
@@ -14,6 +14,7 @@ function Sidebar({ show }) {
     // when sidebar is opened by clicking on hamburger - show options 
     <aside className={`sidebar ${show ? 'open' : ''}`}>
       <ul className="sidebar-items">
+        {/* navigating to home page */}
         <li  className='home' onClick={() => navigate('/')}>
           <span>🏠</span>
           <span>&nbsp; Home</span>
@@ -27,6 +28,7 @@ function Sidebar({ show }) {
           <span>&nbsp; Subscriptions</span>
         </li>
         <hr />
+        {/* navigating to your channel page */}
           <li className='channel' onClick={() => navigate('/channel')}>
           <span>👤</span>
           <span>&nbsp; Your Channel</span>

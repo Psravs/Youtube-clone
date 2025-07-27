@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import FilterBar from '../components/FilterBar';
 // import videos from "../data/videosData"; // not using dummy data anymore
 import VideoCard from '../components/VideoCard';
+// Importing axios for API requests
 import './Home.css';
+
 import axios from 'axios';
 
 function Home() {
@@ -12,6 +14,7 @@ function Home() {
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {
+      // function to getting vidoes from db to show on home
       const fetchVideos = async () => {
         try {
           const res = await axios.get('http://localhost:8080/api/videos');
@@ -23,6 +26,7 @@ function Home() {
       fetchVideos();
     }, []);
 
+    // when filter otpion ALL is selected - basically showing all vidoes on home page 
     const filteredVideos =
       selectedFilter === "All"
         ? videos
@@ -33,7 +37,6 @@ function Home() {
       <div className="home-page">
         {/* filter bar section */}
         <FilterBar selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
-        {/* <h2>Featured Videos</h2> */}
         {/* videos section */}
         <div className="videos-grid">
           {filteredVideos.map((video) => (

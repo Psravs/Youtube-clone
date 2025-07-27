@@ -1,10 +1,12 @@
 // Importing React and hooks
 import React, { useState } from 'react';
+// imporitng axios library to send API requests 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './UploadVideo.css';
 
 function UploadVideo() {
+    // universe 1
   // useState for video form data
   const [videoData, setVideoData] = useState({
     title: '',

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './Header.css';
 
-// importing menu, serach , mic icons
+// importing menu(hamburger), serach , mic icons
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import MicIcon from '@mui/icons-material/Mic';
@@ -46,6 +46,7 @@ function Header({ onMenuClick, isLoggedIn, userInitial }) {
   };
 
   //navigating to channel or create channel
+
   const handleChannelClick = () => {
     setDropdownVisible(false);
     navigate('/channel');
@@ -60,6 +61,7 @@ function Header({ onMenuClick, isLoggedIn, userInitial }) {
     setDropdownVisible(!dropdownVisible);
   };
 
+  // log out option 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');

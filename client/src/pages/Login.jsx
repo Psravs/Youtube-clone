@@ -1,18 +1,20 @@
 //importing react library, useState hook fromr ecat 
 import React, { useState } from 'react';
+// Importing axios for API requests
 import axios from 'axios';
 import './Login.css';
 //imporitng useNaviagte hook from react router dom
 import { useNavigate } from 'react-router-dom';
 
 function Login({ setIsLoggedIn, setUserInitial }) {
+  // universe 1 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    //unibverse 1
-    e.preventDefault();
+    e.preventDefault();     // prevents from auto submitting and reloading
+
     try {
       const res = await axios.post('http://localhost:8080/api/auth/login', {
         email,
