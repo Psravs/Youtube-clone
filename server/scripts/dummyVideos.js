@@ -2,6 +2,7 @@
 import mongoose from 'mongoose';
 import Video from '../models/videoModel.js';
 
+// Dummy videos 
 const dummyVideos = [
   {
     title: "Nature's Beauty - 4K",

@@ -1,9 +1,13 @@
+
+// importing express framework
 import express from 'express';
+// importing mongoose to connect with MongoDB
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv'; //loading .env config
 import videoRoutes from './routes/videoRoutes.js';
 import authRoutes from './routes/authRoutes.js'; //for login/register
+import commentRoutes from './routes/commentRoutes.js';
 
 
 dotenv.config();
@@ -18,6 +22,7 @@ app.use(express.json());
 //routes
 app.use('/api/videos', videoRoutes);
 app.use('/api/auth', authRoutes);       // login/register
+app.use('/api/comments', commentRoutes);
 
 
 //MongoDB Connection + Server Start

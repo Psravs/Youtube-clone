@@ -3,6 +3,7 @@ import express from 'express';
 import Video from '../models/videoModel.js';
 import verifyToken from '../middlewares/verifyToken.js';
 
+// Router to handle routes
 const router = express.Router();
 
 // Get - all videos
@@ -54,6 +55,7 @@ router.put('/:id', verifyToken, async (req, res) => {
   }
 });
 
+// Deleting video
 router.delete('/:id', verifyToken, async (req, res) => {
   try {
     const video = await Video.findByIdAndDelete(req.params.id);

@@ -1,6 +1,7 @@
 // models/videoModel.js
 import mongoose from 'mongoose';
 
+// schema/structure for new video uploading 
 const videoSchema = new mongoose.Schema({
   title: String,
   channel: String,
