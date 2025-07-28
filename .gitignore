@@ -28,3 +28,5 @@ server/.env
 
 # macOS specific hidden file
 **/.DS_Store
+
+Github.txt

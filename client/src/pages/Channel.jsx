@@ -148,7 +148,7 @@ function Channel() {
           {/* Always show dummy videos with non-functional buttons */}
           <div className="channel-video-card">
             <video width="100%" height="200" controls poster="https://dynamic-media.tacdn.com/media/photo-o/2f/0f/66/28/caption.jpg?w=1400&h=1000&s=1">
-              <source src="https://cdn.pixabay.com/video/2021/08/28/86686-594416757_large.mp4" />
+              <source src="https://videos.pexels.com/video-files/31883181/13581314_2560_1440_25fps.mp4" />
             </video>
             <h4>Sample Video 1 - Varanasi</h4>
             <p className="channel-video-meta">1M views • 1 year ago</p>

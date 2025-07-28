@@ -51,4 +51,7 @@
   .videos-grid {
     grid-template-columns: 1fr;
   }
+  .home-page{
+    margin-top: 100px;
+  }
 }
